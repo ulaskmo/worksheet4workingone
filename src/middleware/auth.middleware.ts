@@ -7,6 +7,5 @@ export const authenticateKey = (req: Request, res: Response, next: NextFunction)
     return res.status(401).json({ message: 'Unauthorized: API key is missing' });
   }
 
-  // Add your API key validation logic here if necessary
   next();
 };

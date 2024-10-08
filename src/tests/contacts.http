@@ -1,6 +1,6 @@
 ###
 ### POST Request for a contact 
-## Expected result is ........
+## Expected result is to create a new user
 POST http://localhost:3000/api/v1/users HTTP/1.1
 content-type: application/json
 x-api-key: blahblah
@@ -13,7 +13,7 @@ x-api-key: blahblah
 
 ###
 ### POST Request for a contact 
-## Expected result is ........
+## Expected result is to create a new user
 POST http://localhost:3000/api/v1/users HTTP/3.0
 Content-Type: application/json
 x-api-key: blahblah
@@ -24,11 +24,10 @@ x-api-key: blahblah
   "email": "jdoe123@gmail.com"
 }
 
-
 @endpoint = http://localhost:3000/api/v1/users
 ###
 ### POST Request for a contact 
-## Expected result is ........
+## Expected result is to create a new user
 POST {{endpoint}} HTTP/3.0
 Content-Type: application/json
 x-api-key: blahblah
@@ -63,5 +62,16 @@ Content-Type: application/json
 x-api-key: blahblah
 ###
 
+### DELETE Request to Remove the Newly Created User
+## Expected result is to delete the user using the new Object ID
+DELETE {{endpoint}}/{{newObjectID}} HTTP/1.1
+Content-Type: application/json
+x-api-key: blahblah
+###
 
-
+### GET Request to Verify Deletion of the User
+## Expected result is to confirm the user no longer exists
+GET {{endpoint}}/{{newObjectID}} HTTP/1.1
+Content-Type: application/json
+x-api-key: blahblah
+###
