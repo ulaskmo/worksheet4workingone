@@ -33,6 +33,11 @@ export const getUserById = async (req: Request, res: Response) => {
 export const createUser = async (req: Request, res: Response) => {
   try {
     const newUser = req.body as User;
+
+    // Set the dateJoined and lastUpdated fields to the current date when creating a new user
+    newUser.dateJoined = new Date();
+    newUser.lastUpdated = new Date();
+
     const result = await usersCollection.insertOne(newUser);
 
     if (result.insertedId) {
@@ -44,6 +49,7 @@ export const createUser = async (req: Request, res: Response) => {
     res.status(400).send('Unable to create a new user.');
   }
 };
+
 
 // Update user by ID
 export const updateUser = async (req: Request, res: Response) => {

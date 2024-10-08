@@ -1,7 +1,7 @@
 ###
 ### POST Request for a contact 
 ## Expected result is ........
-POST http://localhost:3000/api/v1/users HTTP/1.1 
+POST http://localhost:3000/api/v1/users HTTP/1.1
 content-type: application/json
 x-api-key: blahblah
 
@@ -10,3 +10,58 @@ x-api-key: blahblah
   "phonenumber": "0871234567",
   "email": "jdoe123@gmail.com"
 }
+
+###
+### POST Request for a contact 
+## Expected result is ........
+POST http://localhost:3000/api/v1/users HTTP/3.0
+Content-Type: application/json
+x-api-key: blahblah
+
+{
+  "name": "Monday is not here",
+  "phonenumber": "0830922156",
+  "email": "jdoe123@gmail.com"
+}
+
+
+@endpoint = http://localhost:3000/api/v1/users
+###
+### POST Request for a contact 
+## Expected result is ........
+POST {{endpoint}} HTTP/3.0
+Content-Type: application/json
+x-api-key: blahblah
+
+{
+  "name" : "monday is here",
+  "email" : "jdoe123@gmail.com"
+}
+
+###
+### POST Request for a contact 
+## Expected result is to create a new user
+# @name postAUser
+POST {{endpoint}} HTTP/1.1
+Content-Type: application/json
+x-api-key: blahblah
+
+{
+  "name": "mondddday isnot here",
+  "email": "ulaskmo@gmail.com"
+}
+###
+
+# Extract the new Object ID from the response body
+@newObjectID = {{postAUser.response.body.id}}
+
+###
+### GET Request to Retrieve the Newly Created User
+## Expected result is to retrieve the user details using the new Object ID
+GET {{endpoint}}/{{newObjectID}} HTTP/1.1
+Content-Type: application/json
+x-api-key: blahblah
+###
+
+
+
